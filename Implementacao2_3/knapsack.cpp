@@ -32,7 +32,7 @@ int knapSack(int W, int wt[], int val[], int n)
 int main(){
     //leitura do arquivo
     FILE *fp;
-    fp = fopen("instancias/mochila01.txt.txt", "r");
+    fp = fopen("instancias/mochila01.txt", "r");
 
     if (fp == NULL){
         puts("arquivo nao encontrado");
@@ -45,7 +45,7 @@ int main(){
     char *token;
     int weight;
 
-    //pega as duas primeiras informações
+    //pega as duas primeiras informaÃ§Ãµes
     while(1){
         fgets(line, 999, fp);
         if (feof(fp)){
