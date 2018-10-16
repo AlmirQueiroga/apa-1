@@ -1,7 +1,7 @@
 CC = g++
 
 all:
-	$(CC) knapsack.cpp -o knapsack
+	$(CC) -std=c++11 knapsack.cpp -o knapsack
 
 clean:
 	rm knapsack
