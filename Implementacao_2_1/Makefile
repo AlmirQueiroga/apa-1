@@ -1,7 +1,7 @@
 CC = g++
 
 all:
-	$(CC) kruskal.cpp -o kruskal
+	$(CC) -std=c++11 kruskal.cpp -o kruskal
 
 clean:
 	rm kruskal
