@@ -13,7 +13,6 @@ int knapSack(int W, int wt[], int val[], int n)
    int i, w;
    int K[n+1][W+1];
 
-   // Build table K[][] in bottom up manner
    for (i = 0; i <= n; i++)
    {
        for (w = 0; w <= W; w++)
@@ -33,7 +32,7 @@ int knapSack(int W, int wt[], int val[], int n)
 int main(){
     //leitura do arquivo
     FILE *fp;
-    fp = fopen("mochila01.txt", "r");
+    fp = fopen("instancias/mochila01.txt.txt", "r");
 
     if (fp == NULL){
         puts("arquivo nao encontrado");
@@ -98,7 +97,7 @@ int main(){
 
     int x = knapSack(weight, wt, val, items);
 
-    cout << x << endl;
+    cout << "valor : " << x << endl;
 
     return 0;
 }
