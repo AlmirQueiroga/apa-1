@@ -3,30 +3,26 @@
 #include <algorithm>
 #include <string.h>
 #include <fstream>
-#include <vector>
 #include <bits/stdc++.h>
 
 using namespace std;
 
-int knapSack(int W, int wt[], int val[], int n)
-{
+int knapSack(int W, int wt[], int val[], int n){
    int i, w;
-   int K[n+1][W+1];
+   int memo[W+1][n+1];
 
-   for (i = 0; i <= n; i++)
-   {
-       for (w = 0; w <= W; w++)
-       {
+   for (w = 0; w <= W; w++){
+       for (i = 0; i <= n; i++){
            if (i==0 || w==0)
-               K[i][w] = 0;
-           else if (wt[i-1] <= w)
-                 K[i][w] = max(val[i-1] + K[i-1][w-wt[i-1]],  K[i-1][w]);
+               memo[w][i] = 0;
+           else if (w < wt[i-1])
+                 memo[w][i] = memo[w][i-1];
            else
-                 K[i][w] = K[i-1][w];
-       }
+                 memo[w][i] = max(val[i-1] + memo[w-wt[i-1]][i-1],  memo[w][i-1]);
+       }   
    }
 
-   return K[n][W];
+   return memo[W][n];
 }
 
 int main(){
@@ -45,7 +41,7 @@ int main(){
     char *token;
     int weight;
 
-    //pega as duas primeiras informaÃ§Ãµes
+    //pega as duas primeiras informações
     while(1){
         fgets(line, 999, fp);
         if (feof(fp)){
