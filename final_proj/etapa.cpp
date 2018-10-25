@@ -31,6 +31,10 @@ int calcularValorCaminho(std::vector<pair<int, int>> p[], vector<int> caminho, i
 
 //movimentaçao de vizinhança utilizando swap
 void swapVizinhanca(std::vector<pair<int, int>> p[], vector<int> &caminho, int size){
+  cout << "Swap" << endl;
+  for(int i = 0; i < caminho.size(); i++)
+  	cout << caminho[i] << " ";
+  cout << endl;
   srand (time(NULL));
   vector<int> caminhoaux = caminho;
   vector<int> caminhomenor;
@@ -65,7 +69,6 @@ void swapVizinhanca(std::vector<pair<int, int>> p[], vector<int> &caminho, int s
         caminhomenor = caminhoaux;
 
         cout << calcularValorCaminho(p, caminhoaux, size) << endl;
-        cout << n1 << " " << n2<< endl;
         for(int i = 0; i < caminhoaux.size(); i++)
             cout << caminhoaux[i] << " ";
         cout << endl;
@@ -77,6 +80,10 @@ void swapVizinhanca(std::vector<pair<int, int>> p[], vector<int> &caminho, int s
 
 //movimentaçao de vizinhança utilizando 2-opt
 void reInsertion(std::vector<pair<int, int>> p[], vector<int> &caminho, int size){
+    cout << "ReInsertion" << endl;
+    for(int i = 0; i < caminho.size(); i++)
+    	cout << caminho[i] << " ";
+    cout << endl;
     srand (time(NULL));
     vector<int> caminhoaux = caminho;
     vector<int> caminhomenor;
@@ -108,9 +115,7 @@ void reInsertion(std::vector<pair<int, int>> p[], vector<int> &caminho, int size
         }
 
         while(n1+3 != n2){
-            swap(caminhoaux[n1], caminhoaux[n1 + 3]);
-            swap(caminhoaux[n1 + 1], caminhoaux[n1 + 4]);
-            swap(caminhoaux[n1 + 2], caminhoaux[n1 + 5]);
+            swap(caminhoaux[n1], caminhoaux[n1 +1]);
             n1++;
         }
 
@@ -125,7 +130,6 @@ void reInsertion(std::vector<pair<int, int>> p[], vector<int> &caminho, int size
             caminhomenor = caminhoaux;
 
             cout << calcularValorCaminho(p, caminhoaux, size) << endl;
-            cout << n1 << " " << n2<< endl;
             for(int i = 0; i < caminhoaux.size(); i++)
                 cout << caminhoaux[i] << " ";
             cout << endl;
@@ -218,47 +222,24 @@ int main(){
         int index = 0;
 
         token = strtok(line, " ");
-        //cout << qLines << endl;
         while(token!=NULL){
             p[qLines].push_back(make_pair(atoi(token), index));
-            //cout << index << "# :" << atoi(token) << " ";
             token = strtok(NULL, " ");
             index++;
         }
         qLines++;
     }
 
-   /* for(int i = 0; i < p[0].size(); i++){
-        for(int f = 0; f < p[0].size(); f++)
-            cout << p[i][f].first << " ";
-        cout << endl;
-    }*/
-
     fclose(fp);//fim da leitura
+
     std::vector<pair<int, int>> paux[size] = p;
     construir(p, size);
-    /*for(int i = 0; i < p[0].size(); i++){
-        for(int f = 0; f < p[0].size(); f++)
-            cout << p[i][f].first << " ";
-        cout << endl;
-    }*/
-    /*vector<int> caminho = caminhoG;
-    swapVizinhanca(p, caminho);
 
-    for(int i = 0; i < caminhoG.size(); i++)
-        cout << caminhoG[i] << " ";
-    cout << endl;
-    for(int i = 0; i < caminho.size(); i++)
-        cout << caminho[i] << " ";
-*/
     cout << calcularValorCaminho(paux, caminhoG, size) << endl;
 
     for(int i = 0; i < caminhoG.size(); i++)
         cout << caminhoG[i] << " ";
     cout << endl;
-
-    //reInsertion(p , caminhoG, size);
-
 
     cout << "Custo Final: " << calcularValorCaminho(paux, vnd(paux, caminhoG, size), size) << endl;
 
