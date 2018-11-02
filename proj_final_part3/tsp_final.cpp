@@ -10,17 +10,7 @@
 #include <cstdlib>
 #include <ctime>
 
-#define MAX_TRY 2000
-
-# define INF std::numeric_limits<int>::max()
-
 using namespace std;
-
-vector<int> caminhoG;
-
-
-int GraspMax =10;
-float alfa = 0;
 
 //Calcula o valor do caminho presente no ciclo presente em resultados
 int calcularValorCaminho(std::vector<pair<int, int>> p[], vector<int> caminho, int size){
@@ -170,7 +160,7 @@ void construir(std::vector<pair<int, int>> p[], int size, vector<int> &caminho){
     }
 }
 
-void GRASP(vector<pair<int, int>> p[], vector<pair<int, int>> paux[], int size, vector<int> &caminho){
+void GRASP(vector<pair<int, int>> p[], vector<pair<int, int>> paux[], int size, vector<int> &caminho, int GraspMax, int alfa){
     construir(p, size, caminho);
     vector<int> caminhomenor = caminho;
     int f = calcularValorCaminho(paux, caminho, size);
@@ -248,7 +238,10 @@ int main(){
     std::vector<pair<int, int>> paux[size] = p;
     vector<int> caminho;
 
-    GRASP(p, paux, size, caminho);
+    int GraspMax =10;
+    float alfa = 0;
+
+    GRASP(p, paux, size, caminho, GraspMax, alfa);
 
     return 0;
 }
