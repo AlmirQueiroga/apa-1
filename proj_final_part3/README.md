@@ -1,7 +1,7 @@
 
 <p align="center">
 	<br>
-	<img src="./grasp.jpeg"/ width=544px height=93px>
-	<h5 align="center">Figura 1 - PutPixel()</h5>
+	<img src="./grasp.jpeg"/ width=1280px height=220px>
+	<h5 align="center">Comparando os Resultados</h5>
 	<br>
 </p>
