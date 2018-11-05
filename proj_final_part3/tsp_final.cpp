@@ -131,7 +131,7 @@ int estaContido(int a, vector<int> &caminho){
 }
 
 //Metodo do vizinho mais proximo
-void construir(std::vector<pair<int, int>> p[], int size, vector<int> &caminho){
+void construir(std::vector<pair<int, int>> p[], int size, vector<int> &caminho, int alfa){
     caminho.clear();
     std::vector<pair<int, int>>* paux = p;
 
@@ -161,12 +161,12 @@ void construir(std::vector<pair<int, int>> p[], int size, vector<int> &caminho){
 }
 
 void GRASP(vector<pair<int, int>> p[], vector<pair<int, int>> paux[], int size, vector<int> &caminho, int GraspMax, int alfa){
-    construir(p, size, caminho);
+    construir(p, size, caminho, alfa);
     vector<int> caminhomenor = caminho;
     int f = calcularValorCaminho(paux, caminho, size);
 
     for(int i = 0; GraspMax > i; i++){
-        construir(p, size, caminho);
+        construir(p, size, caminho, alfa);
 
         vnd(paux, caminho, size);
 
@@ -189,14 +189,21 @@ void GRASP(vector<pair<int, int>> p[], vector<pair<int, int>> paux[], int size, 
 //leitura do arquivo e chamada de funçoes
 int main(){
     string instancia;
+    float alfa;
+    int GraspMax;
 
-    cout << "digite o nome da instancia" << endl;
+    /*cout << "digite o nome da instancia" << endl;
     cin >> instancia;
+    instancia = "instancias/" + instancia + ".txt";*/
+    cout << "digite o alfa" << endl;
+    cin >> alfa;
+    cout << "digite o numero de iteracoes" << endl;
+    cin >> GraspMax;
 
     instancia = "instancias/" + instancia + ".txt";
     //leitura do arquivo
     FILE *fp;
-    fp = fopen(instancia.c_str(), "r");
+    fp = fopen("instancias/burma14.txt", "r");
 
     if (fp == NULL){
         puts("arquivo nao encontrado");
@@ -237,9 +244,6 @@ int main(){
 
     std::vector<pair<int, int>> paux[size] = p;
     vector<int> caminho;
-
-    int GraspMax =10;
-    float alfa = 0;
 
     GRASP(p, paux, size, caminho, GraspMax, alfa);
 
