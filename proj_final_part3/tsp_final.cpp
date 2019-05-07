@@ -186,24 +186,18 @@ void GRASP(vector<pair<int, int>> p[], vector<pair<int, int>> paux[], int size, 
     cout << calcularValorCaminho(paux, caminho, size) << endl;
 }
 
-//leitura do arquivo e chamada de funçoes
 int main(){
-    string instancia;
     float alfa;
     int GraspMax;
 
-    /*cout << "digite o nome da instancia" << endl;
-    cin >> instancia;
-    instancia = "instancias/" + instancia + ".txt";*/
     cout << "digite o alfa" << endl;
-    cin >> alfa;
+    cin >> alfa; // de preferência mesmo número de iterações
     cout << "digite o numero de iteracoes" << endl;
     cin >> GraspMax;
 
-    instancia = "instancias/" + instancia + ".txt";
     //leitura do arquivo
     FILE *fp;
-    fp = fopen("instancias/burma14.txt", "r");
+    fp = fopen("instancias/instancias_teste/bayg29.txt", "r");
 
     if (fp == NULL){
         puts("arquivo nao encontrado");
@@ -222,6 +216,8 @@ int main(){
 
     std::vector<pair<int, int>> p[size];
 
+    cout << "teste" << endl;
+
     while(1){
         int  i = qLines;
         fgets(line, 999, fp);
@@ -236,8 +232,10 @@ int main(){
             p[qLines].push_back(make_pair(atoi(token), index));
             token = strtok(NULL, " ");
             index++;
+
         }
         qLines++;
+        // cout << "teste2" << endl;
     }
 
     fclose(fp);//fim da leitura
